@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Clase TicketCine sin modificadores de acceso
+class TicketCine {
+    // Atributos
+    string pelicula;
+    int sala;
+    float precio;
+
+public:
+    // Constructor
+    TicketCine(string _pelicula, int _sala, float _precio) {
+        pelicula = _pelicula;
+        sala = _sala;
+        setPrecio(_precio);
+    }
+
+    // Método para obtener el precio
+    float getPrecio() {
+        return precio;
+    }
+
+    // Método para establecer el precio
+    void setPrecio(float _precio) {
+        if (_precio < 0) {
+            cout << "El precio no puede ser negativo." << endl;
+            precio = 0;
+        } else {
+            precio = _precio;
+        }
+    }
+
+    // Método para mostrar el ticket
+    void mostrarTicket() {
+        cout << "Pelicula: " << pelicula << endl;
+        cout << "Sala: " << sala << endl;
+        cout << "Precio: $" << precio << endl;
+    }
+};
+
+int main() {
+    // Crear un arreglo de objetos TicketCine para varias películas
+    TicketCine tickets[2] = {
+        TicketCine("Avatar 2", 5, 12.50),
+        TicketCine("Spiderman: No Way Home", 3, 10.00)
+    };
+
+    // Mostrar la información de cada ticket en el arreglo
+    for (int i = 0; i < 2; i++) {
+        tickets[i].mostrarTicket();
+    }
+
+    // Cambiar el precio de un ticket y mostrarlo de nuevo
+    tickets[0].setPrecio(-5);  // Intentar establecer un precio negativo
+    tickets[0].mostrarTicket();  // Ver el precio ajustado
+
+    return 0;
+}
